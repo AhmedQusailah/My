@@ -6,19 +6,19 @@ function sayHello() {
     echo "مرحباً بك في عالم الدوال!<br>";
 }
 
-sayHello(); // استدعاء الدالة
-sayHello(); // يمكنك استدعاؤها أكثر من مرة!
+sayHello();
+sayHello();
 
 ?>
 <!------------------------------------------------------------->
-<!-- دوال بدون مددخلات ومخرجات -->
+<!-- دوال بدون مدخلات ومخرجات -->
 <?php
 
-function welcome() {
+function welcomeStudents() {
     echo "أهلاً بالطلاب!<br>";
 }
 
-welcome();
+welcomeStudents();
 ?>
 <!-------------------------------------------------------------->
 <!-- دوال بمدخلات -->
@@ -37,13 +37,12 @@ greet("إبراهيم");
 <!-- دوال ترجع قيمة -->
 <?php
 
-	function sum() {
-	    return 10 + 20;
-	}
-	
-	$result = sum();
-	
-	echo "النتيجة = $result";
+function sumFixed() {
+    return 10 + 20;
+}
+
+$result = sumFixed();
+echo "النتيجة = $result<br>";
 
 ?>
 <!------------------------------------------------------------------>
@@ -55,12 +54,11 @@ function add($a, $b) {
 }
 
 $result = add(5, 7);
-
-echo "الناتج = $result";
+echo "الناتج = $result<br>";
 
 ?>
 <!-------------------------------------------------------------------->
-<!-- اكتب دالة تستقبل الاسم والعمر وتعيد نصاً منسقًا -->
+<!-- دالة تستقبل الاسم والعمر وتعيد نصاً منسقًا -->
 <?php
 
 function userInfo($name, $age) {
@@ -75,13 +73,13 @@ echo userInfo("سارة", 19);
 <!-- المتغيرات المحلية -->
 <?php
 
-function test() {
-    $x = 10; // متغير محلي
-    echo $x;
+function testLocal() {
+    $x = 10;
+    echo $x . "<br>";
 }
 
-test();   // 10
-echo $x;  // ❌ خطأ — المتغير غير موجود خارج الدالة
+testLocal();
+// echo $x; // خطأ: متغير محلي
 
 ?>
 <!------------------------------------------------------------------------>
@@ -90,47 +88,49 @@ echo $x;  // ❌ خطأ — المتغير غير موجود خارج الدال
 
 $x = 5;
 
-function show() {
+function showGlobal() {
     global $x;
-    echo $x; // يعمل
+    echo $x . "<br>";
 }
 
-show();
+showGlobal();
 
 ?>
 <!-------------------------------------------------------------------------->
-<!-- استخدام $GLOBALS — الطريقة الأكثر احترافية -->
+<!-- استخدام $GLOBALS -->
 <?php
 
 $x = 20;
 
-function demo() {
-    echo $GLOBALS['x'];
+function demoGlobals() {
+    echo $GLOBALS['x'] . "<br>";
 }
 
-demo(); // 20
+demoGlobals();
 
 ?>
 <!------------------------------------------------------------------------->
 <!-- القيم الافتراضية للبارامترات -->
 <?php
 
-function welcome($name = "ضيف") {
+function welcomeUser($name = "ضيف") {
     echo "أهلاً يا $name <br>";
 }
 
-welcome();           // أهلاً يا ضيف
-welcome("أحمد");     // أهلاً يا أحمد
+welcomeUser();
+welcomeUser("أحمد");
 
 ?>
 <!------------------------------------------------------------------------->
 <!-- دوال ببارامترات متعددة -->
 <?php
-function sum($a, $b, $c) {
+
+function sumThree($a, $b, $c) {
     return $a + $b + $c;
 }
 
-echo sum(1, 2, 3);
+echo sumThree(1, 2, 3) . "<br>";
+
 ?>
 <!------------------------------------------------------------------------>
 <!-- دوال تستقبل عددًا غير محدود من القيم -->
@@ -138,15 +138,13 @@ echo sum(1, 2, 3);
 
 function sumAll(...$numbers) {
     $total = 0;
-
     foreach ($numbers as $n) {
         $total += $n;
     }
-
     return $total;
 }
 
-echo sumAll(1, 2, 3, 4, 5);
+echo sumAll(1, 2, 3, 4, 5) . "<br>";
 
 ?>
 <!-------------------------------------------------------------------------->
@@ -154,23 +152,25 @@ echo sumAll(1, 2, 3, 4, 5);
 <?php
 
 $hello = function() {
-    echo "Hello!";
+    echo "Hello!<br>";
 };
 
-$hello(); // استدعاء
+$hello();
 
 ?>
 <!-------------------------------------------------------------------------->
 <!-- دالة مجهولة تستقبل بارامترات -->
 <?php
-$sum = function($a, $b) {
+
+$sumAnon = function($a, $b) {
     return $a + $b;
 };
 
-echo $sum(5, 7);
+echo $sumAnon(5, 7) . "<br>";
+
 ?>
 <!----------------------------------------------------------------------------->
-<!--  Callback Functions -->
+<!-- Callback Functions -->
 <?php
 
 function process($callback) {
@@ -179,7 +179,7 @@ function process($callback) {
 }
 
 process(function() {
-    echo "تم التنفيذ داخل الكول باك!";
+    echo "تم التنفيذ داخل الكول باك!<br>";
 });
 
 ?>
@@ -193,17 +193,18 @@ $result = array_filter($students, function($name) {
     return strlen($name) > 3;
 });
 
+$result = array_values($result);
 print_r($result);
+echo "<br>";
 
 ?>
 <!---------------------------------------------------------------------------->
-<!-- الدوال داخل OOP (الطرق Methods) -->
+<!-- الدوال داخل OOP -->
 <?php
 
 class Student {
-    
     public function sayHello() {
-        echo "مرحبًا، أنا طالب!";
+        echo "مرحبًا، أنا طالب!<br>";
     }
 }
 
@@ -212,7 +213,7 @@ $st->sayHello();
 
 ?>
 <!------------------------------------------------------------------------------->
-<!-- مثال متقدم لدوال داخل الـ Class (OOP) -->
+<!-- مثال متقدم لدوال داخل Class -->
 <?php
 
 class Calculator {
@@ -227,13 +228,12 @@ class Calculator {
 }
 
 $calc = new Calculator();
-
-echo $calc->add(10, 5);
-echo $calc->multiply(4, 3);
+echo $calc->add(10, 5) . "<br>";
+echo $calc->multiply(4, 3) . "<br>";
 
 ?>
 <!----------------------------------------------------------------------------->
-<!-- الدوال مع الخصائص (Using $this) -->
+<!-- الدوال مع الخصائص -->
 <?php
 
 class User {
@@ -250,39 +250,38 @@ class User {
 
 $user = new User();
 $user->setName("أحمد");
-
-echo $user->getName(); // أحمد
+echo $user->getName() . "<br>";
 
 ?>
 <!------------------------------------------------------------------------------->
-<!--  حساب عاملي العدد (Factorial) -->
+<!-- حساب عاملي العدد -->
 <?php
 
 function factorial($n) {
-    if ($n == 1) return 1;
-
+    if ($n <= 1) return 1;
     return $n * factorial($n - 1);
 }
 
-echo factorial(5); // 120
+echo factorial(5) . "<br>";
 
 ?>
 <!---------------------------------------------------------------------------->
-<!-- مفهوم الـ Closure (الدوال المغلقة) -->
+<!-- Closure -->
 <?php
 
 $message = "مرحبًا";
 
 $greeter = function() use ($message) {
-    echo $message;
+    echo $message . "<br>";
 };
 
 $greeter();
 
 ?>
 <!------------------------------------------------------------------------------>
-<!--  Higher-Order Functions -->
+<!-- Higher-Order Functions -->
 <?php
+
 $numbers = [1, 2, 3, 4];
 
 $squared = array_map(function($n) {
@@ -290,9 +289,11 @@ $squared = array_map(function($n) {
 }, $numbers);
 
 print_r($squared);
+echo "<br>";
+
 ?>
 <!------------------------------------------------------------------------------>
-<!-- دالة تُرجع دالة (Function Returning Function) -->
+<!-- دالة تُرجع دالة -->
 <?php
 
 function multiplier($n) {
@@ -302,26 +303,14 @@ function multiplier($n) {
 }
 
 $double = multiplier(2);
-echo $double(10); // 20
+echo $double(10) . "<br>";
 
 $triple = multiplier(3);
-echo $triple(10); // 30
+echo $triple(10) . "<br>";
 
-?>
-<!----------------------------------------------------------------------------->
-<!-- مثال أساسي للـ Closure -->
-<?php
-
-$message = "Hello";
-
-$greet = function() use ($message) {
-    echo $message;
-};
-
-$greet();
 ?>
 <!---------------------------------------------------------------------------->
-<!-- Currying (تقسيم الدالة إلى مراحل) -->
+<!-- Currying -->
 <?php
 
 function multiply($a) {
@@ -332,11 +321,11 @@ function multiply($a) {
     };
 }
 
-echo multiply(2)(3)(4); // 24
+echo multiply(2)(3)(4) . "<br>";
 
 ?>
 <!---------------------------------------------------------------------------->
-<!-- (يستخدم في Laravel Validation) -->
+<!-- مثال Laravel Validation -->
 <?php
 
 function minLength($min) {
@@ -347,13 +336,14 @@ function minLength($min) {
 
 $validateName = minLength(5);
 
-echo $validateName("Ali");    // false  
-echo $validateName("Ahmed");  // true
+echo $validateName("Ali") ? "true<br>" : "false<br>";
+echo $validateName("Ahmed") ? "true<br>" : "false<br>";
 
 ?>
-<!--------------------------------------------------------------------------->
-<!--  Function Composition -->
+<!---------------------------------------------------------------------------->
+<!-- Function Composition -->
 <?php
+
 function double($n) {
     return $n * 2;
 }
@@ -369,7 +359,6 @@ function compose($f, $g) {
 }
 
 $combined = compose('double', 'increment');
+echo $combined(5);
 
-echo $combined(5); // (5 + 1) × 2 = 12
 ?>
-<!-----------------------------************---------------------------------->
