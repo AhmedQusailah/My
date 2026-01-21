@@ -1,0 +1,26 @@
+# .htaccess - إعادة التوجيه
+
+# تشغيل محرك إعادة الكتابة
+RewriteEngine On
+
+# المجلدات والملفات الحقيقية لا تتم إعادة كتابتها
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# إعادة توجيه كل شيء إلى index.php
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+
+# منع الوصول المباشر إلى مجلد app
+RewriteRule ^app/ - [F,L]
+
+# منع الوصول إلى ملفات محددة
+<FilesMatch "\.(env|config|log|sql)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# تعيين صفحة الخطأ 404
+ErrorDocument 404 /index.php?url=404
+
+# تعيين صفحة الخطأ 500
+ErrorDocument 500 /index.php?url=500

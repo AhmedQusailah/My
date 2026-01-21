@@ -1,0 +1,20 @@
+{
+    "name": "library/library-system",
+    "description": "نظام مكتبة باستخدام PHP و MVC",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "مطور المكتبة",
+            "email": "developer@library.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.4"
+    }
+}

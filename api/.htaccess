@@ -1,0 +1,9 @@
+# api/.htaccess
+RewriteEngine On
+
+# السماح بالوصول من أي نطاق (لتطوير API)
+Header set Access-Control-Allow-Origin "*"
+Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+
+# لا حاجة لإعادة الكتابة هنا، يتم التعامل معها في الملفات
